@@ -1,5 +1,27 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block content %}
-    <h1>Hi</h1>
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<div class="container">
+    <fieldset class="fieldset">
+        <h1>MariPosa</h1>
+        <p class="about">Welcome to MariPosa, your gateway to innovative and
+            accessible learning. Designed with professionals, students, and lifelong learners in mind,
+            MariPosa is a cutting-edge platform that brings knowledge closer to you. Our mission is simple yet powerful:
+            to break barriers in education and create a dynamic space where learning is engaging,
+            flexible, and within everyone’s reach.</p>
+        </fieldset>
+        <fieldset class="fieldset">
+        <p class="about">Modern education comes with its challenges—limited access,
+            lack of engagement, and outdated methods can often make it
+            hard for learners to stay motivated. That’s where MariPosa steps in.
+            By offering a user-friendly interface and an extensive range of resources
+            across various subjects, we empower you to learn at your own pace, on your own terms.</p>
+        </fieldset>
+        <fieldset class="fieldset">
+        <p class="about">Our platform isn’t just about education—it’s about creating opportunities.
+            Whether you’re a student striving to excel academically, a professional seeking career advancement,
+            or a lifelong learner eager to explore new horizons, MariPosa has something for you.</p>
+    </fieldset>
+</div>
 {% endblock content %}

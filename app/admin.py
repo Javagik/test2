@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Content, Author, Publisher, Unit
 
-# Register your models here.
+admin.site.register(Content)
+admin.site.register(Author)
+admin.site.register(Publisher)
+admin.site.register(Unit)

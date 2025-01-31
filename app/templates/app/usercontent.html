@@ -1,0 +1,66 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<fieldset class="fieldset">
+    <div>
+        <a class="newPost" href="{% url 'content_create' %}">New Post</a>
+        <br>
+        
+        <!-- Search Form -->
+        <form method="get" action="{% url 'content' %}">
+            <label>
+                <input type="text" name="q" placeholder="Search for title" value="{{ search_query }}">
+            </label>
+            <button type="submit" class="Edit">Search</button>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr class="tr">
+                    <th class="th">Title</th>
+                    <th class="th">Body</th>
+                    <th class="th">Rating</th>
+                    <th class="th">Pubdate</th>
+                    <th class="th">Author</th>
+                    <th class="th">Publisher</th>
+                    <th class="th">Added</th>
+                    <th class="th">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for content in contents %}
+                    {% if content.author == request.user %}
+                        <tr>
+                            <td class="td">{{ content.title }}</td>
+                            <td class="td">{{ content.body }}</td>
+                            <td class="td">{{ content.rating }}</td>
+                            <td class="td">{{ content.pub_date }}</td>
+                            <td class="td">{{ content.author }}</td>
+                            <td class="td">{{ content.publisher }}</td>
+                            <td class="td">
+                                {% for author in content.author.all %}
+                                    {{ author.first_name }} {{ author.last_name }}
+                                {% endfor %}
+                            </td>
+                            <td><a class="Edit" href="{% url 'content_detail' content.pk %}">View</a></td>
+                        </tr>
+                    {% endif %}
+                {% empty %}
+                    <tr>
+                        <td colspan="8">No content found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total:</td>
+                    <td>{{ total_contents }}</td>
+                    <td>{{ total_authors }}</td>
+                    <td>{{ total_publishers }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</fieldset>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<fieldset class="fieldset">
+        <div class="post-entry">
+            <h2><a href="">{{content.title}}</a></h2>
+            <p>{{content.body}}</p>
+        </div>
+  <a class="edit" href="{% url 'content_update' content.pk %}">Edit</a>
+  <a class="delete" href="{% url 'content_delete' content.pk %}">Delete</a>
+</fieldset>
+{% endblock content %}

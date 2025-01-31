@@ -1,0 +1,87 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<fieldset class="fieldset">
+    <h1 class="H1Up">New Post</h1>
+    <form action="{% url 'content_create' %}" method="post" class="FmUp">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title" class="label">Title</label>
+            <input type="text" id="id_title" name="title" class="IptUP">
+            {% for error in form.title.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_user" class="label">User</label>
+            <select id="id_user" name="user" class="IptUP">
+                {% for user in users %}
+                <option value="{{ user.pk }}" {% if user.pk == form.user.value %} selected {% endif %}>
+                    {{ user }}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.user.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_body" class="label">Body</label>
+            <textarea id="id_body" name="body" class="IptUP"></textarea>
+            {% for error in form.body.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_rating" class="label">Rating</label>
+            <input type="number" id="id_rating" name="rating" class="IptUP">
+            {% for error in form.rating.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_pub_date" class="label">Publish date</label>
+            <input type="date" id="id_pub_date" name="pub_date" class="IptUP">
+            {% for error in form.pub_date.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_author" class="label">Author</label>
+            <select id="id_author" name="author" multiple class="IptUP">
+                {% for author in authors %}
+                <option value="{{ author.pk }}" {% if author.pk == form.author.value %} selected {% endif %}>
+                    {{ author }}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.author.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_publisher" class="label">Publisher</label>
+            <select id="id_publisher" name="publisher" class="IptUP">
+                {% for publisher in publishers %}
+                <option value="{{ publisher.pk }}" {% if publisher.pk == form.publisher.value %} selected {% endif %}>
+                    {{ publisher }}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.publisher.errors %}
+                <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" value="Save" class="IptUP">
+        </div>
+    </form>
+</fieldset>
+{% endblock %}

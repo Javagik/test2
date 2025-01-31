@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<h2 class="login-title">Sign-up</h2>
+
+{% if form.errors %}
+    <div class="error-message">
+        <p><strong>Please correct the following errors:</strong></p>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<form method="post" class="login-form">
+    {% csrf_token %}
+    <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+    </div>
+
+    <div class="input-group">
+        <label for="password1">Password:</label>
+        <input type="password" placeholder="Enter Password" name="password1" required>
+    </div>
+
+    <div class="input-group">
+        <label for="password2">Re-enter Password:</label>
+        <input type="password" placeholder="Re-enter Password" name="password2" required>
+    </div>
+
+    <div class="input-group">
+        <label for="phone_number">Contact Number:</label>
+        <input type="text" placeholder="Enter your Contact Number" name="phone_number" required>
+    </div>
+
+    <div class="input-group">
+        <label for="age">Age:</label>
+        <input type="number" placeholder="Enter your age" name="age" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Sign-up</button>
+</form>
+
+{% endblock content %}

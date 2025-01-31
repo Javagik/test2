@@ -5,15 +5,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"
+    <title>pass Learn</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Favicon.jpg' %}" type="image/x-icon" >
+    
 </head>
 <body>
+   
     {% include 'app/navbar.html' %}
-
+    
+    {% if user.is_authenticated %}
+    <div class="welcome-message">
+        <p class="greeting">Welcome, {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button  href="{% url 'login' %}" type="submit" class="logout-btn">Log out</button>
+        </form>
+    </div>
+{% else %}
+    <div class="login-prompt">
+        <p>Are you sure to log-out? <a href="{% url 'login' %}" class="login-link">Log-out</a></p>
+    </div>
+{% endif %}
+    
     {% block content %}
-    <!--pages-->
-    {% endblock content %}
+    <!-- Pages will extend and replace this block -->
+    {% endblock %}
     <script src="{% static 'js/Script.js' %}"></script>
 </body>
 </html>

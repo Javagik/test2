@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<fieldset class="fieldset">
+    <h1 class="editing">Edit Post</h1>
+    <form action = "{% url 'content_update' content.pk %}" method="post">
+        {%csrf_token%}
+       {{form.as_p}}
+        <input type="submit" value="Update">
+        
+    </form>
+</fieldset>
+{% endblock content %}
